@@ -1,0 +1,46 @@
+extends layout_public
+
+block content
+    //- ================================-->
+    //- Advertisement
+    div(class="span9")
+        h2
+            small
+                |¡Inicia ahora!
+        p
+            |Es el primer paso para comenzar a disfrutar de un genial sistema de encuestas que te ayudara a estar más serca de tus clientes.
+        div(style="text-align: center")
+            img(src="http://dribbble.s3.amazonaws.com/users/43655/screenshots/1100736/questionaire_1x.png" class="img-rounded")
+
+    //- ================================-->
+    //- User register form 
+    div(class="span3")
+        div(class="well")
+            h4
+                |Ingresa tus datos
+            form(action="/account/login/" method="post")
+                
+                //- ================================-->
+                //- Email field
+                div(class="control-group" id="emailField")
+                    label(class="control-label" for="email")
+                        |Correo electrónico
+                    div(class="controls")
+                        input(type="text" name="email" id="email" maxlength="50")
+                        span(class="help-inline")
+                    
+                //- ================================-->
+                //- Password field
+                div(class="control-group" id="passwordField")
+                    label(class="control-label" for="password")
+                        |Contraseña
+                    div(class="controls")
+                        input(type="password" name="password" id="password" maxlength="12")
+                        span(class="help-inline")
+
+                //- ================================-->
+                //- Actions Form
+                div(class="control-group")
+                    div(class="controls")
+                        button(class="btn btn-primary" type="submit" id="btn-login")
+                            |Iniciar sesion

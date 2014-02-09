@@ -1,0 +1,72 @@
+extends layout_muted
+
+block header_title
+    |!Bienvenido!
+
+block header_comment
+    |&nbsp;El siguiente paso es unirse a un grupo existente o crear uno nuevo.
+
+block content
+    hr
+    //- ================================-->
+    //- Advertisement
+    div(class="span6")
+        div
+            h4
+                |Unete a un grupo existente
+            p
+                |Si conoces al administrador de grupo solicita una invitación por correo electronico, o que te envie el
+                strong
+                    |&nbsp;código secreto
+                |&nbsp;para introducirlo en este formulario.
+            form(action="/account/join-group/" method="post")
+                    
+                //- ================================-->
+                //- Hash field
+                div(class="control-group" id="hashField")
+                    label(class="control-label" for="hash")
+                        |Código secreto
+                    div(class="controls")
+                        input(type="text" class="span5" name="hash" id="hash")
+                        span(class="help-inline")
+                
+                //- ================================-->
+                //- Actions Form
+                div(class="control-group")
+                    div(class="controls")
+                        button(class="btn btn-primary" type="submit" id="btn-confirm")
+                            |Confirmar
+
+    //- ================================-->
+    //- User register form 
+    div(class="span1")
+    div(class="span5")
+        div
+            h4
+                |Crea un grupo nuevo
+            form(action="/account/join-group/" method="post")
+                    
+                //- ================================-->
+                //- Name field
+                div(class="control-group" id="nameField")
+                    label(class="control-label" for="name")
+                        |Nombre
+                    div(class="controls")
+                        input(type="text" name="name" id="name" maxlength="50")
+                        span(class="help-inline")
+
+                //- ================================-->
+                //- Description field
+                div(class="control-group" id="descriptionField")
+                    label(class="control-label" for="description")
+                        |Descripción
+                    div(class="controls")
+                        textarea(type="text" name="description" id="description")
+                        span(class="help-inline")
+                
+                //- ================================-->
+                //- Actions Form
+                div(class="control-group")
+                    div(class="controls")
+                        button(class="btn btn-primary" type="submit" id="btn-create")
+                            |Crear

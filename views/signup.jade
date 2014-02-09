@@ -1,0 +1,81 @@
+extends layout_public
+
+block content
+    //- ================================-->
+    //- Advertisement
+    div(class="span9")
+        h2
+            small
+                |¡Inicia ahora!
+        p
+            |Es el primer paso para comenzar a disfrutar de un genial sistema de encuestas que te ayudara a estar más serca de tus clientes. Comienza completando estos campos para crear tu perfil dentro de la aplicación.
+        div(style="text-align: center")
+            img(src="http://dribbble.s3.amazonaws.com/users/43655/screenshots/1100736/questionaire_1x.png" class="img-rounded")
+
+    //- ================================-->
+    //- User register form 
+    div(class="span3")
+        div(class="well")
+            h4
+                |Ingresa tus datos
+            form(action="/account/signup/" method="post")
+                
+                //- ================================-->
+                //- Name field
+                div(class="control-group" id="nameField")
+                    label(class="control-label" for="first_name")
+                        |Nombre
+                    div(class="controls  controls-row")
+                        input(type="text" name="first_name" maxlength="20" placeholder="Nombres")
+                        input(type="text" name="last_name" maxlength="20" placeholder="Apellidos")
+                        span(class="help-inline")
+                    
+                //- ================================-->
+                //- Email field
+                div(class="control-group" id="emailField")
+                    label(class="control-label" for="email")
+                        |Correo electrónico
+                    div(class="controls")
+                        input(type="text" name="email" id="email" maxlength="50")
+                        span(class="help-inline")
+                    
+                //- ================================-->
+                //- Password field
+                div(class="control-group" id="passwordField")
+                    label(class="control-label" for="password")
+                        |Contraseña
+                    div(class="controls")
+                        input(type="password" name="password" id="password" maxlength="12")
+                        span(class="help-inline")
+                    
+                //- ================================-->
+                //- Confirm password field
+                div(class="control-group" id="confirmPasswordField")
+                    label(class="control-label" for="confirm_password")
+                        |Confirmar contraseña
+                    div(class="controls")
+                        input(type="password" name="confirm_password" id="confirm_password" maxlength="12")
+                        span(class="help-inline")
+
+                //- ================================-->
+                //- Acept terms field
+                div(class="control-group" id="aceptTermsField")
+                    div(class="controls")
+                        label(class="checkbox")
+                            small
+                                input(type="checkbox"  name="accept-terms" id="accept-terms" value="")
+                                |Acepto las 
+                                a(href="#")
+                                    |&nbsp;Condiciones del servicio 
+                                |&nbsp;y
+                                a(href="#")
+                                    |&nbsp;Políticas de confindencialidad
+                                |&nbsp;de eQuestionnaire.
+                        span(class="help-inline")
+
+                //- ================================-->
+                //- Actions Form
+                div(class="control-group")
+                    div(class="controls")
+                        button(class="btn btn-primary" type="submit" id="btn-nextStep")
+                            |Siguiente paso

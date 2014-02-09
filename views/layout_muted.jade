@@ -1,0 +1,51 @@
+doctype html
+html(lang='es')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+    meta(name="description" content="eQuestionnaire es una plataforma basada en la construcción de encuesta y el analisis de los resultados que generen [ES]. eQuestionnaire is based on the construction and analysis of survey results that generate platform [EN].")
+    meta(name="keywords" content="Questionnaire, Questions, Contacts List, Contacts, Groups")
+    meta(name="author" content="G. Nicolas Arroyo | g.nicolas.arroyo@gmail.com")
+    title
+      |Questionnaire platform
+    link(href="/css/eQuestionnaire.base.css" rel="stylesheet")
+    link(href="/css/eQuestionnaire.responsive.css" rel="stylesheet")
+    link(href="/css/eQuestionnaire.extra.1.css" rel="stylesheet")
+    link(href="/css/eQuestionnaire.extra.2.css" rel="stylesheet")
+    //[if lt IE 9]><script src="/js/lib/html5shiv.js"></script><script src="/js/lib/respond.min.js"></script><![endif]
+  body
+    //- ===============================>
+    //- Navbar
+    div(class="navbar navbar-masthead navbar-static-top")
+      div(class="navbar-inner")
+        div(class="navbar-container")
+          a(class="brand" href="#")
+            |eQuestionnaire
+            
+          ul(class="nav pull-right")
+            li
+              a(href="javascript:void()")
+                |#{username}&nbsp; &nbsp;
+            li
+              a(href="/account/logout/")
+                |Salir
+
+    //- ===============================>
+    //- Header
+    div(class="container")
+      div(class="row")
+        div(class="span12")
+          h2
+            block header_title
+            small
+              block header_comment
+
+    //- ===============================>
+    //- Content
+    div(class="container")
+      div(class="row")
+        block content
+
+    //- ===============================>
+    //- Scripts
+    block scripts
