@@ -1,5 +1,6 @@
 extends layout_public
 
+
 block content
     //- ================================-->
     //- Advertisement
@@ -42,5 +43,11 @@ block content
                 //- Actions Form
                 div(class="control-group")
                     div(class="controls")
-                        button(class="btn btn-primary" type="submit" id="btn-login")
+                        button(class="btn btn-primary" type="button" id="btn-login")
                             |Iniciar sesion
+
+
+block scripts
+    //- ===============================>
+    //- Scripts
+    script(data-main="/js/login" src="/js/libs/require.min.js")

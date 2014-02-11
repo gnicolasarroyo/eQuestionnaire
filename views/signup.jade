@@ -1,5 +1,6 @@
 extends layout_public
 
+
 block content
     //- ================================-->
     //- Advertisement
@@ -26,8 +27,8 @@ block content
                     label(class="control-label" for="first_name")
                         |Nombre
                     div(class="controls  controls-row")
-                        input(type="text" name="first_name" maxlength="20" placeholder="Nombres")
-                        input(type="text" name="last_name" maxlength="20" placeholder="Apellidos")
+                        input(type="text" name="first_name" id="first_name" maxlength="20" placeholder="Nombres")
+                        input(type="text" name="last_name" id="last_name" maxlength="20" placeholder="Apellidos")
                         span(class="help-inline")
                     
                 //- ================================-->
@@ -59,11 +60,11 @@ block content
 
                 //- ================================-->
                 //- Acept terms field
-                div(class="control-group" id="aceptTermsField")
+                div(class="control-group" id="acceptTermsField")
                     div(class="controls")
                         label(class="checkbox")
                             small
-                                input(type="checkbox"  name="accept-terms" id="accept-terms" value="")
+                                input(type="checkbox"  name="accept_terms" id="accept_terms" value="")
                                 |Acepto las 
                                 a(href="#")
                                     |&nbsp;Condiciones del servicio 
@@ -77,5 +78,11 @@ block content
                 //- Actions Form
                 div(class="control-group")
                     div(class="controls")
-                        button(class="btn btn-primary" type="submit" id="btn-nextStep")
+                        button(class="btn btn-primary" type="button" id="btn-nextStep")
                             |Siguiente paso
+
+
+block scripts
+    //- ===============================>
+    //- Scripts
+    script(data-main="/js/signup" src="/js/libs/require.min.js")
