@@ -56,6 +56,7 @@ require.config({
         appGroupRouter: 'routers/appGroupRouter',
         appQuestionnairesRouter: 'routers/appQuestionnairesRouter',
         // Views -->
+        sidebarView: 'views/sidebarView'
     }
 });
 

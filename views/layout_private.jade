@@ -12,6 +12,7 @@ html(lang='es')
     link(href="css/eQuestionnaire.responsive.css" rel="stylesheet")
     link(href="css/eQuestionnaire.extra.1.css" rel="stylesheet")
     link(href="css/eQuestionnaire.extra.2.css" rel="stylesheet")
+    link(href="/css/animate.min.css" rel="stylesheet")
     //[if lt IE 9]><script src="/js/lib/html5shiv.js"></script><script src="/js/lib/respond.min.js"></script><![endif]
   body
     //- ===============================>
@@ -49,9 +50,9 @@ html(lang='es')
     div(class="container")
       div(class="row")
         div(class="span12")
-          h2
+          h2(id="header_title")
             block header_title
-            small
+            small(id="header_comment")
               block header_comment
 
     //- ===============================>
@@ -59,7 +60,8 @@ html(lang='es')
     div(class="container")
       div(class="row")
         block content
-
+        
+        
     //- ===============================>
     //- Scripts
     script(data-main="js/main" src="js/libs/require.min.js")

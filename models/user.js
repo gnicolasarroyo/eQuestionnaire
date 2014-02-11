@@ -16,13 +16,13 @@ var mongoose = require('mongoose');
 *    
 */
 var schema = new mongoose.Schema({
-    first_name: { type: String },
-    last_name: { type: String },
-    email: { type: String },
-    salt: { type: String },
-    hash: { type: String }, 
-    status: { type: Number },
-    is_admin_group: { type: Boolean, default: false }
+	first_name: { type: String },
+	last_name: { type: String },
+	email: { type: String },
+	salt: { type: String },
+	hash: { type: String }, 
+	status: { type: Number },
+	is_admin_group: { type: Boolean, default: false }
 });
 
 exports.schema = function () {

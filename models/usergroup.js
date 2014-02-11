@@ -10,8 +10,8 @@ var mongoose = require('mongoose');
 * ==========================    
 */
 var schema = new mongoose.Schema({
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    group: { type: mongoose.Schema.Types.ObjectId, ref: 'Group'}
+	user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+	group: { type: mongoose.Schema.Types.ObjectId, ref: 'Group'}
 });
 
 exports.schema = function () {

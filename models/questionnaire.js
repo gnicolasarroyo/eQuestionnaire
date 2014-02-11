@@ -10,8 +10,8 @@ var mongoose = require('mongoose');
 * ==========================
 */
 var schema = new mongoose.Schema({
-    title: { type: String, required: true },
-    description: { type: String, required: true },
+	title: { type: String, required: true },
+	description: { type: String, required: true },
 	creation_date: { type: Date, default: Date.now() },
 	last_modified_date: { type: Date, default: Date.now() },
 	send_date: { type: Date },

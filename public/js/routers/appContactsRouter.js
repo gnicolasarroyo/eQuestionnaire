@@ -4,8 +4,15 @@ define('appContactsRouter',
   'contactModel',
   'contactCollection',
   'contactListModel',
-  'contactListCollection'
-  ], function (Backbone) {
+  'contactListCollection',
+  'sidebarView',
+  ], function (
+    Backbone, 
+    ContactModel, 
+    ContactCollection, 
+    ContactListModel, 
+    ContactListCollection, 
+    SidebarView) {
 
 
     /**
@@ -23,10 +30,24 @@ define('appContactsRouter',
         "contacts/lists/:id/edit/": "editContactList",
         "contacts/lists/:id/delete/": "deleteContactList"
       },
+      initialize: function () {
+        this.sidebar = new SidebarView({
+          collection: [
+            {title: 'CONTACTOS'},
+            {url: "contacts/", description: "Ver contactos", active: true},
+            {url: "contacts/new/", description: "Nuevo contacto"},
+            {title: 'LISTAS DE CONTACTOS'},
+            {url: "contacts/lists/", description: "Ver listas de contactos"},
+            {url: "contacts/lists/new/", description: "Nueva lista de contactos"}
+          ]
+        });
+      },
       listContact: function() {
+        this.sidebar.render('contacts/');
         console.log('this a contact list');
       },
       newContact: function() {
+        this.sidebar.render('contacts/new/');
         console.log('this a contact new');
       },
       editContact: function(id) {
@@ -36,9 +57,11 @@ define('appContactsRouter',
         console.log('this a contact delete ' + id);
       },
       listContactList: function() {
+        this.sidebar.render('contacts/lists/');
         console.log('this a contact list list');
       },
       newContactList: function() {
+        this.sidebar.render('contacts/lists/new/');
         console.log('this a contact list new');
       },
       editContactList: function(id) {
