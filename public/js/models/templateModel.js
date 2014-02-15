@@ -15,11 +15,9 @@ define('templateModel',
 		defaults: {
 			title: '',
 			description: '',
-			group: {},
 			questions: []
 		},
 		initialize: function () {
-			this.set({'group': new GroupModel(this.get('group'))});
 			this.set({'questions': new QuestionCollection(this.get(questions))});
 
 			console.log('templateModel module loaded.');

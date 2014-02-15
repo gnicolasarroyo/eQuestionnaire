@@ -13,12 +13,9 @@ define('contactModel',
 		urlRoot: '/api/v1/contact/',
 		defaults: {
 			name: '',
-			email: '',
-			group: {}
+			email: ''
 		},
 		initialize: function () {
-			this.set({'group': new GroupModel(this.get('group'))});	
-			
 			console.log('contactModel module loaded.');
 		},
 		validate: function (attrs) {

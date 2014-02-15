@@ -16,12 +16,9 @@ define('mailAccountSettingModel',
 			description: '',
 			host: '',
 			port: 0,
-			user: '',
-			group: {}
+			user: ''
 		},
 		initialize: function () {
-			this.set({'group': new GroupModel(this.get('group'))});	
-
 			console.log('mailAccountSetting module loaded.');
 		},
 		validate: function (attrs) {

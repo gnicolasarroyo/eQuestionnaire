@@ -85,6 +85,10 @@ exports.postSignup = function(req, res){
 */
 exports.logout = function(req, res){
 	req.session.destroy(function () {
+		// Don't work with connect-redis
+		//delete req.session.user;
+		//delete req.session.group;
+		res.clearCookie('connect.sid', { path: '/' });
 		res.redirect('/account/login/');
 	});
 };

@@ -36,7 +36,6 @@ require.config({
         questionnaireModel: 'models/questionnaireModel',
         templateModel: 'models/templateModel',
         userModel: 'models/userModel',
-        userProfileModel: 'models/userProfileModel',
         // Collections -->
         activityCollection: 'collections/activityCollection',
         choiceCollection: 'collections/choiceCollection',
@@ -48,7 +47,6 @@ require.config({
         questionnaireCollection: 'collections/questionnaireCollection',
         templateCollection: 'collections/templateCollection',
         userCollection: 'collections/userCollection',
-        userProfileCollection: 'collections/userProfileCollection',
         // Routers -->
         appAccountRouter: 'routers/appAccountRouter',
         appContactsRouter: 'routers/appContactsRouter',

@@ -22,17 +22,15 @@ define('questionnaireModel',
 			last_modified_date: '',
 			send_date: '',
 			status: 1,
-			group: {},
-			mail_account_setting: {},
-			contacts: [],
-			contact_lists: [],
+			//mail_account_setting: {},
+			//contacts: [],
+			//contact_lists: [],
 			questions: []
 		},
 		initialize: function () {
-			this.set({'group': new GroupModel(this.get('group'))});
-			this.set({'mail_account_setting': new MailAccountSettingModel(this.get('mail_account_setting'))});
-			this.set({'contacts': new ContactCollection(this.get('contacts'))});
-			this.set({'contact_lists': new ContactListCollection(this.get('contact_lists'))});
+			//this.set({'mail_account_setting': new MailAccountSettingModel(this.get('mail_account_setting'))});
+			//this.set({'contacts': new ContactCollection(this.get('contacts'))});
+			//this.set({'contact_lists': new ContactListCollection(this.get('contact_lists'))});
 			this.set({'questions': new QuestionCollection(this.get('questions'))});
 
 			console.log('questionnaireModel module loaded.');

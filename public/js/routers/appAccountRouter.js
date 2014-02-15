@@ -1,7 +1,6 @@
 define('appAccountRouter', 
   [
-  'backbone',
-  'userProfileModel'
+  'backbone'
   ], function (Backbone) {
 
 
