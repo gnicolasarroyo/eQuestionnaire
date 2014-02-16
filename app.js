@@ -27,7 +27,8 @@ mongoose.connect('mongodb://127.0.0.1/eQuestionnairePrueba');
 var appController = require('./controllers/app');
 var contactController = require('./controllers/contact');
 var contactListController = require('./controllers/contactlist');
-var mailAccountSettingController = require('./controllers/mailaccountsetting')
+var mailAccountSettingController = require('./controllers/mailaccountsetting');
+var questionnaireController = require('./controllers/questionnaire');
 
 
 /**
@@ -99,6 +100,13 @@ app.get(    '/api/v1/mailaccountsetting/:id', mailAccountSettingController.detai
 app.post(   '/api/v1/mailaccountsetting',     mailAccountSettingController.new);
 app.put(    '/api/v1/mailaccountsetting/:id', mailAccountSettingController.edit);
 app.delete( '/api/v1/mailaccountsetting/:id', mailAccountSettingController.delete);
+
+// api Questionnaire -->
+app.get(    '/api/v1/questionnaire',     questionnaireController.list);
+app.get(    '/api/v1/questionnaire/:id', questionnaireController.detail);
+app.post(   '/api/v1/questionnaire',     questionnaireController.new);
+app.put(    '/api/v1/questionnaire/:id', questionnaireController.edit);
+app.delete( '/api/v1/questionnaire/:id', questionnaireController.delete);
 
 
 /**

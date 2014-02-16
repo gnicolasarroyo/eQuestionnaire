@@ -3,7 +3,7 @@
 * =================
 */
 var mongoose = require('mongoose');
-
+var questionSchema = require('./question').schema();
 
 /**
 * Questionnaire Model Schema
@@ -14,13 +14,13 @@ var schema = new mongoose.Schema({
 	description: { type: String, required: true },
 	creation_date: { type: Date, default: Date.now() },
 	last_modified_date: { type: Date, default: Date.now() },
-	send_date: { type: Date },
+	//send_date: { type: Date },
 	status: { type: Number, required: true },
 	group: { type: mongoose.Schema.Types.ObjectId, ref: 'Group' },
-	mail_account_setting: { type: mongoose.Schema.Types.ObjectId, ref: 'MailAccountSetting' },
-	contacts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Contact' }],
-	contact_lists: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ContactList' }],
-	questions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Question' }]
+	//mail_account_setting: { type: mongoose.Schema.Types.ObjectId, ref: 'MailAccountSetting' },
+	//contacts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Contact' }],
+	//contact_lists: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ContactList' }],
+	questions: [questionSchema]
 });
 
 exports.schema = function () {

@@ -3,7 +3,7 @@
 * =================
 */
 var mongoose = require('mongoose');
-
+var choiceSchema = require('./choice').schema();
 
 /**
 * Question Model Schema
@@ -12,8 +12,7 @@ var mongoose = require('mongoose');
 var schema = new mongoose.Schema({
 	query: { type: String, required: true },
 	question_type: { type: Number, required: true },
-	group: { type: mongoose.Schema.Types.ObjectId, ref: 'Group' },
-	choices: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Choice' }]
+	choices: [choiceSchema]
 });
 
 exports.schema = function () {
