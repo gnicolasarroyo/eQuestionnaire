@@ -10,8 +10,7 @@ define('appAccountRouter',
     */
     var appAccountRouter = Backbone.Router.extend({
       routes: {
-        "account/userprofile/": "userProfileDetail",
-        "account/exit/": "logOut"
+        "account/userprofile/": "userProfileDetail"
       },
       userProfileDetail: function() {
         console.log('this is a user profile');

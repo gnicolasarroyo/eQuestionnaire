@@ -4,7 +4,7 @@ define('sidebarView',
 	'underscore',
 	'backbone',
 	'text!templates/sidebar_tpl.html'
-	], function ($, _, Backbone, sidebarTpl) {
+	], function ($, _, Backbone, SidebarTpl) {
 	
 	
 	/**
@@ -13,14 +13,15 @@ define('sidebarView',
 	*/
 	var SidebarView = Backbone.View.extend({
 		el: '#sidebar',
-		template: _.template(sidebarTpl),
+		template: _.template(SidebarTpl),
 		initialize: function () {
+			window.appEvents.on('sidebar:render', this.render, this);
+
 			console.log('sidebarView module loaded.');
 		},
-		render: function (active) {
-			var title = this.collection[0].title.toLowerCase(); 
-			$('h2#header_title').html(title.charAt(0).toUpperCase() + title.slice(1));
-			this.$el.html(this.template({collection: this.collection, active: active}));
+		render: function (data) {
+			var title = data.collection[0].title.toLowerCase();
+			this.$el.html(this.template({collection: data.collection, active: data.active, header_title: title.charAt(0).toUpperCase() + title.slice(1)}));
 			return this;
 		}
 	});

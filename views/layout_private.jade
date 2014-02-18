@@ -39,28 +39,17 @@ html(lang='es')
           ul(class="nav pull-right")
             li
               a(href="#account/userprofile/")
-                |#{username}&nbsp; &nbsp;
-                i(class="icon-user")
+                strong
+                  |#{username}
             li
               a(href="/account/logout/")
                 |Salir
-
-    //- ===============================>
-    //- Header
-    div(class="container")
-      div(class="row")
-        div(class="span12")
-          h2(id="header_title")
-            block header_title
-            small(id="header_comment")
-              block header_comment
 
     //- ===============================>
     //- Content
     div(class="container")
       div(class="row")
         block content
-        
         
     //- ===============================>
     //- Scripts

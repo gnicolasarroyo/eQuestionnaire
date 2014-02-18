@@ -4,15 +4,13 @@ define('appContactsRouter',
   'contactModel',
   'contactCollection',
   'contactListModel',
-  'contactListCollection',
-  'sidebarView',
+  'contactListCollection'
   ], function (
     Backbone, 
     ContactModel, 
     ContactCollection, 
     ContactListModel, 
-    ContactListCollection, 
-    SidebarView) {
+    ContactListCollection) {
 
 
     /**
@@ -31,23 +29,29 @@ define('appContactsRouter',
         "contacts/lists/:id/delete/": "deleteContactList"
       },
       initialize: function () {
-        this.sidebar = new SidebarView({
-          collection: [
+        this.sidebarOptions = [
             {title: 'CONTACTOS'},
-            {url: "contacts/", description: "Ver contactos", active: true},
+            {url: "contacts/", description: "Ver contactos"},
             {url: "contacts/new/", description: "Nuevo contacto"},
             {title: 'LISTAS DE CONTACTOS'},
             {url: "contacts/lists/", description: "Ver listas de contactos"},
             {url: "contacts/lists/new/", description: "Nueva lista de contactos"}
-          ]
-        });
+          ];
       },
       listContact: function() {
-        this.sidebar.render('contacts/');
+        window.appEvents.trigger('sidebar:render',{collection: this.sidebarOptions, active: 'contacts/'});
         console.log('this a contact list');
       },
       newContact: function() {
-        this.sidebar.render('contacts/new/');
+        window.appEvents.trigger('sidebar:render',{collection: this.sidebarOptions, active: 'contacts/new/'});
+
+        //window.loaderView.open();
+        window.appEvents.trigger('loader:show');
+
+        setTimeout(function () {
+          //window.loaderView.close();
+          window.appEvents.trigger('loader:hide');
+        }, 3000);
         console.log('this a contact new');
       },
       editContact: function(id) {
@@ -57,11 +61,18 @@ define('appContactsRouter',
         console.log('this a contact delete ' + id);
       },
       listContactList: function() {
-        this.sidebar.render('contacts/lists/');
+        window.appEvents.trigger('sidebar:render',{collection: this.sidebarOptions, active: 'contacts/lists/'});
         console.log('this a contact list list');
       },
       newContactList: function() {
-        this.sidebar.render('contacts/lists/new/');
+        window.appEvents.trigger('sidebar:render',{collection: this.sidebarOptions, active: 'contacts/lists/new/'});
+        //window.loaderView.open();
+        window.appEvents.trigger('loader:show');
+
+        setTimeout(function () {
+          //window.loaderView.close();
+          window.appEvents.trigger('loader:hide');
+        }, 3000);
         console.log('this a contact list new');
       },
       editContactList: function(id) {

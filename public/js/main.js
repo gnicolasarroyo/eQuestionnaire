@@ -25,6 +25,8 @@ require.config({
         backbone: 'libs/backbone-min',
         text: 'libs/require-plugin-text',
         i18n: 'libs/require-plugin-i18n',
+        eQuestionnaire_extra: 'libs/eQuestionnaire.extra',
+        select2: 'libs/select2',
         // Models -->
         activityModel: 'models/activityModel',
         choiceModel: 'models/choiceModel',
@@ -54,7 +56,9 @@ require.config({
         appGroupRouter: 'routers/appGroupRouter',
         appQuestionnairesRouter: 'routers/appQuestionnairesRouter',
         // Views -->
-        sidebarView: 'views/sidebarView'
+        sidebarView: 'views/sidebarView',
+        loaderView: 'views/loaderView',
+        notifierView: 'views/notifierView'
     }
 });
 
@@ -65,21 +69,31 @@ require.config({
 */
 require([
     'backbone',
+    'underscore',
     'appAccountRouter',
     'appContactsRouter',
     'appDashboardRouter',
     'appGroupRouter',
-    'appQuestionnairesRouter'
+    'appQuestionnairesRouter',
+    'loaderView',
+    'notifierView',
+    'sidebarView'
     ], function (
-        Backbone, 
+        Backbone,
+        _, 
         appAccountRouter,
         appContactsRouter,
         appDashboardRouter, 
         appGroupRouter, 
-        appQuestionnairesRouter
+        appQuestionnairesRouter,
+        LoaderView,
+        NotifierView,
+        SidebarView
         ) {
     
     // Initialize routing and start Backbone.history()
+    window.appEvents = _.extend({}, Backbone.Events);
+
     new appAccountRouter();
     new appContactsRouter();
     new appDashboardRouter(); 
@@ -88,4 +102,7 @@ require([
 
     Backbone.history.start();
 
+    new LoaderView();
+    new NotifierView();
+    new SidebarView();
 });

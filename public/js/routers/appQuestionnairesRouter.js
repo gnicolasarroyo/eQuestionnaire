@@ -2,13 +2,11 @@ define('appQuestionnairesRouter',
 	[
 	'backbone',
 	'questionnaireModel',
-	'questionnaireCollection',
-	'sidebarView'
+	'questionnaireCollection'
 	], function (
 		Backbone, 
 		QuestionnaireModel, 
-		QuestionnaireCollection, 
-		SidebarView) {
+		QuestionnaireCollection) {
 
 
 		/**
@@ -23,20 +21,18 @@ define('appQuestionnairesRouter',
 				"questionnaires/:id/delete/": "deleteQuestionnaire"
 			},
 			initialize: function () {
-				this.sidebar = new SidebarView({
-					collection: [
+				this.sidebarOptions = [
 						{ title: 'ENCUESTAS' },
-						{ url: "questionnaires/", description: "Ver encuestas", active: true },
+						{ url: "questionnaires/", description: "Ver encuestas"},
 						{ url: "questionnaires/new/", description: "Nueva encuesta" }
-					]
-				});
+					];
 			},
 			listQuestionnaire: function() {
-				this.sidebar.render('questionnaires/');
+				window.appEvents.trigger('sidebar:render',{collection: this.sidebarOptions, active: 'questionnaires/'});
 				console.log('this a questionnaire list');
 			},
 			newQuestionnaire: function() {        
-				this.sidebar.render('questionnaires/new/');	
+				window.appEvents.trigger('sidebar:render',{collection: this.sidebarOptions, active: 'questionnaires/new/'});	
 				console.log('this a questionnaire new');
 			},
 			editQuestionnaire: function(id) {
