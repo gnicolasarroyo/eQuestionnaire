@@ -1,0 +1,23 @@
+<div class="alert alert-block animated fadeIn">
+	<h4><%= legend %></h4>
+	<p>
+		¿Seguro que deseas borrar este contacto?
+	</p>
+	<p>
+		<strong>Nombre</strong>
+	</p>
+	<p>
+		<%= name %>
+	</p>
+	<p>
+		<strong>Correo electrónico</strong>
+	</p>
+	<p>
+		<%= email %>		
+	</p>
+	<p>
+		<button class="btn btn-small btn-warning" id="btn-delete"><%= action_delete %></button>
+		&nbsp;
+		<button class="btn btn-small btn-inverse" id="btn-delete-cancel"><%= action_cancel %></button>
+	</p>
+</div>

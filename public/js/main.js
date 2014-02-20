@@ -58,7 +58,9 @@ require.config({
         // Views -->
         sidebarView: 'views/sidebarView',
         loaderView: 'views/loaderView',
-        notifierView: 'views/notifierView'
+        notifierView: 'views/notifierView',
+        contactFormView: 'views/contact/contactFormView',
+        contactListView: 'views/contact/listView',
     }
 });
 

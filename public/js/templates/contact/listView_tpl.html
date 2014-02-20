@@ -1,0 +1,38 @@
+<div class="animated fadeInRight">
+	<div>
+		<h2><small><%= legend %></small></h2>
+		<hr>
+	</div>
+	<div id="delete-section"></div>
+	<div class="navbar-search pull-right">
+	  		<input type="text" class="search-query" placeholder="Buscar" id="input-search">
+	</div>
+	<div>
+		<p>
+			Resultados para <strong>"Agus"</strong>. <a href="">Quitar filtro</a>.
+		</p>
+	</div>
+	<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Nombre</th>
+			<th>Correo electrónico</th>
+			<th></th>
+		</tr>
+	</thead>	
+	<tbody>
+	<% _.each(collection, function (item) { %>
+	    <tr>
+	    	<td><%= item.name %></td>
+	    	<td><a href="mailto:<%= item.email %>"><%= item.email %></a></td>
+	    	<td>
+	    		<div class="btn-group">
+				  <a href="#contacts/<%= item._id %>/edit/reload/" class="btn btn-small btn-primary"><%= action_edit %></a>
+				  <button class="btn btn-small btn-danger" id="btn-delete-call" data-id="<%= item._id %>"><%= action_delete %></button>
+				</div>
+	    	</td>
+	    </tr>
+	<% }) %>
+	</tbody>
+	</table>
+</div>

@@ -4,13 +4,17 @@ define('appContactsRouter',
   'contactModel',
   'contactCollection',
   'contactListModel',
-  'contactListCollection'
+  'contactListCollection',
+  'contactFormView',
+  'contactListView'
   ], function (
     Backbone, 
     ContactModel, 
     ContactCollection, 
     ContactListModel, 
-    ContactListCollection) {
+    ContactListCollection,
+    ContactFormView,
+    ContactListView) {
 
 
     /**
@@ -21,7 +25,9 @@ define('appContactsRouter',
       routes: {
         "contacts/": "listContact",
         "contacts/new/": "newContact",
+        "contacts/new/reload/": "newContactReload",
         "contacts/:id/edit/": "editContact",
+        "contacts/:id/edit/reload/": "editContactReload",
         "contacts/:id/delete/": "deleteContact",
         "contacts/lists/": "listContactList",
         "contacts/lists/new/": "newContactList",
@@ -39,47 +45,49 @@ define('appContactsRouter',
           ];
       },
       listContact: function() {
-        window.appEvents.trigger('sidebar:render',{collection: this.sidebarOptions, active: 'contacts/'});
+        this.loadView('contacts/', function () { return new ContactListView({ collection: new ContactCollection() }); });
         console.log('this a contact list');
       },
       newContact: function() {
-        window.appEvents.trigger('sidebar:render',{collection: this.sidebarOptions, active: 'contacts/new/'});
-
-        //window.loaderView.open();
-        window.appEvents.trigger('loader:show');
-
-        setTimeout(function () {
-          //window.loaderView.close();
-          window.appEvents.trigger('loader:hide');
-        }, 3000);
-        console.log('this a contact new');
+        this.loadView('contacts/new/', function () {return new ContactFormView({ model: new ContactModel() }); });
+      },
+      newContactReload: function () {
+        this.navigate("contacts/new/", {trigger: true, replace: true});
       },
       editContact: function(id) {
-        console.log('this a contact edit ' + id);
+        this.loadView('', function () {return new ContactFormView({ model: new ContactModel({ _id: id }) }); });
+      },
+      editContactReload: function(id) {
+        this.navigate("contacts/"+id+"/edit/", {trigger: true, replace: true});
       },
       deleteContact: function(id) {
+        this.loadView('', {});        
         console.log('this a contact delete ' + id);
       },
       listContactList: function() {
-        window.appEvents.trigger('sidebar:render',{collection: this.sidebarOptions, active: 'contacts/lists/'});
+        this.loadView('contacts/lists/', {});
         console.log('this a contact list list');
       },
       newContactList: function() {
-        window.appEvents.trigger('sidebar:render',{collection: this.sidebarOptions, active: 'contacts/lists/new/'});
-        //window.loaderView.open();
-        window.appEvents.trigger('loader:show');
-
-        setTimeout(function () {
-          //window.loaderView.close();
-          window.appEvents.trigger('loader:hide');
-        }, 3000);
+        this.loadView('contacts/lists/new/', {});
         console.log('this a contact list new');
       },
       editContactList: function(id) {
+        this.loadView('', {});
         console.log('this a contact list edit ' + id);
       },
       deleteContactList: function(id) {
+        this.loadView('', {});
         console.log('this a contact list delete ' + id);
+      },
+      loadView: function (active, view) {
+        window.appEvents.trigger('sidebar:render',{ collection: this.sidebarOptions, active: (active ? active : '') });
+        
+        this.view && (this.view.close ? this.view.close() : this.view.remove());
+
+        if (typeof view === 'function') {
+          if ($('#content').length !== 0) $('<div id="content"></div>').insertAfter('#notifier');this.view = view();
+        } 
       }
     });
 

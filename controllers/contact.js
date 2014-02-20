@@ -10,9 +10,28 @@ var ContactModel = require('../models/contact').model();
  * GET /api/v1/contact
  */
 exports.list = function(req, res){
-	
+
 	if (req.session.group) {
-		ContactModel.find({group: req.session.group}, '_id name email', function (err, contacts) {
+		var conditions = function () {
+			var temp = {};
+
+			temp.group = req.session.group;
+			
+			var r = function (string) {
+				return new RegExp(string.trim());
+			};
+
+			if (req.query.name && req.query.email) {
+				temp.$or = [
+					{ name: r(req.query.name) },
+					{ email: r(req.query.email) }
+				]; 
+			}
+
+			return temp;
+		};
+
+		ContactModel.find(conditions(), '_id name email', { sort: {name: 'asc'} }, function (err, contacts) {
 			if (err) res.send(404, {});
 			else res.send(contacts);
 		});
