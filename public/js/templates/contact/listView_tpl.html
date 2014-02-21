@@ -7,32 +7,48 @@
 	<div class="navbar-search pull-right">
 	  		<input type="text" class="search-query" placeholder="Buscar" id="input-search">
 	</div>
-	<div>
-		<p>
-			Resultados para <strong>"Agus"</strong>. <a href="">Quitar filtro</a>.
-		</p>
-	</div>
-	<table class="table table-hover">
-	<thead>
-		<tr>
-			<th>Nombre</th>
-			<th>Correo electrónico</th>
-			<th></th>
-		</tr>
-	</thead>	
-	<tbody>
-	<% _.each(collection, function (item) { %>
-	    <tr>
-	    	<td><%= item.name %></td>
-	    	<td><a href="mailto:<%= item.email %>"><%= item.email %></a></td>
-	    	<td>
-	    		<div class="btn-group">
-				  <a href="#contacts/<%= item._id %>/edit/reload/" class="btn btn-small btn-primary"><%= action_edit %></a>
-				  <button class="btn btn-small btn-danger" id="btn-delete-call" data-id="<%= item._id %>"><%= action_delete %></button>
-				</div>
-	    	</td>
-	    </tr>
-	<% }) %>
-	</tbody>
-	</table>
+	<% if (collection.length > 0)  { %>
+		<% if (filter) { %>
+			<div>
+				<p>
+					Resultados para <strong>"<%= filter %>"</strong>.<button type="button" class="btn btn-link" id="btn-remove-filter"><%= action_remove_filter %></button>
+				</p>
+			</div>
+		<% } %>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Correo electrónico</th>
+					<th></th>
+				</tr>
+			</thead>	
+			<tbody>
+			<% _.each(collection, function (item) { %>
+			    <tr>
+			    	<td><%= item.name %></td>
+			    	<td><a href="mailto:<%= item.email %>"><%= item.email %></a></td>
+			    	<td>
+			    		<div class="btn-group">
+						  <a href="#contacts/<%= item._id %>/edit/reload/" class="btn btn-small btn-primary"><%= action_edit %></a>
+						  <button class="btn btn-small btn-danger" id="btn-delete-call" data-id="<%= item._id %>"><%= action_delete %></button>
+						</div>
+			    	</td>
+			    </tr>
+			<% }) %>
+			</tbody>
+		</table>
+	<% } else { %>
+		<div>
+		<% if (filter) { %>
+			<p>
+				No se encontraron resultados para <strong>"<%= filter %>"</strong>.<button type="button" class="btn btn-link" id="btn-remove-filter"><%= action_remove_filter %></button>
+			</p>
+		<% } else { %>
+			<p>
+				No se encontraron <strong>"Contactos"</strong>, para agregar contactos a tu grupo puedes dirigirte al menu <strong>"Nuevo contacto"</strong> que se encuentra a la izquierda de tu pantalla, o bien haciendo click <a href="#contacts/new/">aqui</a>.
+			</p>
+		<% }%>
+		</div>	
+	<% }%>
 </div>

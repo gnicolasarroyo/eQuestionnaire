@@ -18,7 +18,7 @@ exports.list = function(req, res){
 			temp.group = req.session.group;
 			
 			var r = function (string) {
-				return new RegExp(string.trim());
+				return new RegExp(string.trim(),'i');
 			};
 
 			if (req.query.name && req.query.email) {

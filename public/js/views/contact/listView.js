@@ -16,7 +16,8 @@ define("contactListView",
         	'click #btn-delete-call': 'callDelete',
         	'click #btn-delete': 'delete',
         	'click #btn-delete-cancel': 'cancelDelete',
-        	'keypress #input-search': 'search'
+        	'keypress #input-search': 'search',
+        	'click #btn-remove-filter': 'removeFilter'
         },
         initialize: function() {  
             window.appEvents.trigger('loader:show');
@@ -34,8 +35,10 @@ define("contactListView",
 				 	this.$el.html(this.template({
 						collection: this.collection.toJSON(),
 						legend: 'Lista de contactos',
+						filter: this.filter,
 						action_edit: 'Editar',
-						action_delete: 'Borrar'
+						action_delete: 'Borrar',
+						action_remove_filter: 'Quitar filtro'
 					}));
 				  	break;
 				case 'delete':
@@ -141,13 +144,26 @@ define("contactListView",
 	    	if ($(e.currentTarget).val().length >= 3 && e.which == 13) {
 	    		
     			window.appEvents.trigger('loader:show');
-        
+        		
+        		this.filter = $(e.currentTarget).val();
 	        	this.getCollection(this, function(that) {
 	            	that.render('list');
 					window.appEvents.trigger('loader:hide');
 	            });
 		        
 	    	} 
+	    },
+	    removeFilter: function (e) {
+	    	e.preventDefault();
+
+	    	window.appEvents.trigger('loader:show');
+        		
+    		this.filter = undefined;
+
+        	this.getCollection(this, function(that) {
+            	that.render('list');
+				window.appEvents.trigger('loader:hide');
+            });
 	    }
 	    
     });  

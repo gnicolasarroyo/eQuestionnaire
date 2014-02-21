@@ -4,17 +4,10 @@
 		¿Seguro que deseas borrar este contacto?
 	</p>
 	<p>
-		<strong>Nombre</strong>
+		<strong><%= name %></strong>,&nbsp;
+		<strong><%= email %></strong>.
 	</p>
-	<p>
-		<%= name %>
-	</p>
-	<p>
-		<strong>Correo electrónico</strong>
-	</p>
-	<p>
-		<%= email %>		
-	</p>
+	<br>
 	<p>
 		<button class="btn btn-small btn-warning" id="btn-delete"><%= action_delete %></button>
 		&nbsp;
