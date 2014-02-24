@@ -59,8 +59,9 @@ require.config({
         sidebarView: 'views/sidebarView',
         loaderView: 'views/loaderView',
         notifierView: 'views/notifierView',
-        contactFormView: 'views/contact/contactFormView',
-        contactListView: 'views/contact/listView',
+        contactListMasterView: 'views/contact/contactListMasterView',
+        contactListView: 'views/contact/contactListView',
+        contactSearchView: 'views/contact/contactSearchView'
     }
 });
 

@@ -104,11 +104,11 @@ define("contactListView",
         	
         	this.model.destroy({
         		success: function () {
-        			window.appEvents.trigger('loader:show');
+        			//window.appEvents.trigger('loader:show');
             
 		        	that.getCollection(that, function(that) {
 		            	that.render('list');
-						window.appEvents.trigger('loader:hide');
+						//window.appEvents.trigger('loader:hide');
 		            });
         		},
         		error: function () {
@@ -143,12 +143,12 @@ define("contactListView",
 
 	    	if ($(e.currentTarget).val().length >= 3 && e.which == 13) {
 	    		
-    			window.appEvents.trigger('loader:show');
+    			//window.appEvents.trigger('loader:show');
         		
         		this.filter = $(e.currentTarget).val();
 	        	this.getCollection(this, function(that) {
 	            	that.render('list');
-					window.appEvents.trigger('loader:hide');
+					//window.appEvents.trigger('loader:hide');
 	            });
 		        
 	    	} 
@@ -156,13 +156,13 @@ define("contactListView",
 	    removeFilter: function (e) {
 	    	e.preventDefault();
 
-	    	window.appEvents.trigger('loader:show');
+	    	//window.appEvents.trigger('loader:show');
         		
     		this.filter = undefined;
 
         	this.getCollection(this, function(that) {
             	that.render('list');
-				window.appEvents.trigger('loader:hide');
+				//window.appEvents.trigger('loader:hide');
             });
 	    }
 	    

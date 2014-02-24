@@ -5,16 +5,16 @@ define('appContactsRouter',
   'contactCollection',
   'contactListModel',
   'contactListCollection',
-  'contactFormView',
-  'contactListView'
+  //'contactFormView',
+  'contactListMasterView'
   ], function (
     Backbone, 
     ContactModel, 
     ContactCollection, 
     ContactListModel, 
     ContactListCollection,
-    ContactFormView,
-    ContactListView) {
+    //ContactFormView,
+    ContactListMasterView) {
 
 
     /**
@@ -45,11 +45,12 @@ define('appContactsRouter',
           ];
       },
       listContact: function() {
-        this.loadView('contacts/', function () { return new ContactListView({ collection: new ContactCollection() }); });
+        this.loadView('contacts/', function () { return new ContactListMasterView({ collection: new ContactCollection() }); });
         console.log('this a contact list');
       },
       newContact: function() {
-        this.loadView('contacts/new/', function () {return new ContactFormView({ model: new ContactModel() }); });
+        //this.loadView('contacts/new/', function () {return new ContactFormView({ model: new ContactModel() }); });
+        console.log('new contact');
       },
       newContactReload: function () {
         this.navigate("contacts/new/", {trigger: true, replace: true});
@@ -83,11 +84,17 @@ define('appContactsRouter',
       loadView: function (active, view) {
         window.appEvents.trigger('sidebar:render',{ collection: this.sidebarOptions, active: (active ? active : '') });
         
+        if (typeof this.view === 'object') this.view.remove(); 
+        this.view = view();
+        this.view.render();
+        
+        /*
         this.view && (this.view.close ? this.view.close() : this.view.remove());
 
         if (typeof view === 'function') {
           if ($('#content').length !== 0) $('<div id="content"></div>').insertAfter('#notifier');this.view = view();
-        } 
+        }
+        */ 
       }
     });
 

@@ -12,28 +12,71 @@ var ContactModel = require('../models/contact').model();
 exports.list = function(req, res){
 
 	if (req.session.group) {
-		var conditions = function () {
-			var temp = {};
-
-			temp.group = req.session.group;
+		
+		/**
+		 * conditions
+		 * Prepare the conditions for the find method
+		 * @return <Object> obj
+		 */
+		function conditions () {
+			var obj = {};
 			
-			var r = function (string) {
-				return new RegExp(string.trim(),'i');
-			};
-
+			obj.group = req.session.group;
+			
 			if (req.query.name && req.query.email) {
-				temp.$or = [
-					{ name: r(req.query.name) },
-					{ email: r(req.query.email) }
+				obj.$or = [
+					{ name: new RegExp(req.query.name.trim(),'i') },
+					{ email: new RegExp(req.query.email.trim(),'i') }
 				]; 
 			}
 
-			return temp;
+			return obj;
 		};
 
-		ContactModel.find(conditions(), '_id name email', { sort: {name: 'asc'} }, function (err, contacts) {
+		
+		/**
+		 * options
+		 * Prepare the options for the find method
+		 * @return <Object> obj
+		 */
+		function options () {
+			var obj = {}, page, perPage;
+
+			obj.sort = {name: 'asc'};
+			
+			if (req.query.page) {
+				perPage = 5;
+				page = req.query.page > 0 ? req.query.page : 0;
+			
+				obj.limit = perPage;
+    			obj.skip = (perPage * page);
+			}
+
+    		return obj;
+		};
+
+		
+		ContactModel.find(conditions(), '_id name email', options(), function (err, contacts) {
+			/**
+			 * find
+			 * @param <Object> conditions
+			 * @param <Object> fields
+			 * @param <Object> options
+			 * @return <Object> {} || contacts
+			 */
 			if (err) res.send(404, {});
-			else res.send(contacts);
+			else ContactModel.count(conditions()).exec(function (err, count) {
+					/**
+					 * count
+					 * @return <Number> count
+					 */
+					if (err) res.send(404, {});
+		        	else res.send({
+		        		collection: contacts, 
+		        		page: (req.query.page && req.query.page > 0) ? req.query.page : 0, 
+		        		pages: ((Math.floor(count / 5)) + ((count % 5) > 0 ? 1 : 0)) 
+		        	});
+		      	});
 		});
 	} else {
 		res.send(401, {});
