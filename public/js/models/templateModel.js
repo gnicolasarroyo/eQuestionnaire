@@ -12,6 +12,7 @@ define('templateModel',
 	*/
 	var TemplateModel = Backbone.Model.extend({
 		urlRoot: '/api/v1/template/',
+		idAttribute: '_id',
 		defaults: {
 			title: '',
 			description: '',

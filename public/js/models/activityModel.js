@@ -12,6 +12,7 @@ define('activityModel',
 	*/
 	var ActivityModel = Backbone.Model.extend({
 		urlRoot: '/api/v1/activity/',
+		idAttribute: '_id',
 		defaults: {
 			datetime: '',
 			description: '',

@@ -15,6 +15,7 @@ define('questionnaireModel',
 	*/
 	var QuestionnaireModel = Backbone.Model.extend({
 		urlRoot: '/api/v1/questionnaire/',
+		idAttribute: '_id',
 		defaults: {
 			title: '',
 			description: '',

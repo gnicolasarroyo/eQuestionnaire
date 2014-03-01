@@ -19,15 +19,6 @@ define("contactListView",
             'click #prev-page': 'prevPage',
             'click #next-page': 'nextPage'
         },
-        initialized: function () {
-            /**
-             * initialize
-             */
-            //this.listenTo(this.collection, "change", this.render, this);
-            //this.listenTo(this.collection, "add", this.render, this);
-            //this.listenTo(this.collection, "remove", this.render, this);
-            //this.listenTo(this.collection, "reset", this.render, this);
-        },
   		render: function () {
   			/**
   			 * render

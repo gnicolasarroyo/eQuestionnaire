@@ -44,6 +44,7 @@ define('contactCollection',
 
 			data = this.addFilters(data);
 			this.fetch({ data: data, reset: true });
+			return data;
 		},
 		nextPage: function () {
 			/**
@@ -56,6 +57,7 @@ define('contactCollection',
 
 			data = this.addFilters(data);
 			this.fetch({ data: data, reset: true });
+			return data;
 		},
 		addFilters: function (data) {
 			/**

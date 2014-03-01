@@ -1,0 +1,31 @@
+<form class="animated fadeIn">
+	<h2><small><%= legend %></small></h2>
+	<hr>
+	<!-- Name field 
+    =================================-->
+    <div class="control-group" id="nameField">  
+        <label class="control-label" for="c-name"><%= input_label_name %></label>
+        <div class="controls">
+            <input maxlength="30" type="text" name="c-name" id="c-name">
+            <span class="help-inline"></span>
+        </div>  <!-- end controls -->
+    </div> <!-- end .control-group -->
+
+    <!-- User field 
+    =================================-->
+    <div class="control-group" id="emailField">  
+        <label class="control-label" for="c-email"><%= input_label_email %></label>
+        <div class="controls">
+            <input maxlength="50" type="text" name="c-email" id="c-email">
+            <span class="help-inline"></span>
+        </div>  <!-- end controls -->
+    </div> <!-- end .control-group -->
+
+	<!-- Actions form
+	=======================================-->
+	<div class="control-group">
+	    <div class="controls">
+	        <button class="btn btn-small btn-primary" type="button" id="btn-save"><%= btn_label_save %></button>
+	    </div> <!-- end .controls -->
+	</div> <!-- end .control-group -->
+</form>

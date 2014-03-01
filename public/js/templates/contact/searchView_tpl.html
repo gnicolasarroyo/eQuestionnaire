@@ -1,10 +1,10 @@
+<div>
+	<h2><small><%= legend %></small></h2>
+	<hr>
+</div>
 <% if (count_records === 0 && !filter) { %>
 	<p><%= no_records %></p>
 <% } else { %>
-	<div>
-		<h2><small>Lista de contactos</small></h2>
-		<hr>
-	</div>
 	<div class="navbar-search pull-right">
 	  		<input type="text" class="search-query" placeholder="<%= input_search_placeholer %>" id="input-search">
 	</div>

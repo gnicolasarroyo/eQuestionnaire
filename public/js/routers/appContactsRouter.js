@@ -66,7 +66,7 @@ define('appContactsRouter',
         console.log('this a contact delete ' + id);
       },
       listContactList: function() {
-        this.loadView('contacts/lists/', {});
+        this.loadView('contacts/lists/', function () { return new ContactListMasterView({ collection: new ContactCollection() }); });
         console.log('this a contact list list');
       },
       newContactList: function() {
@@ -86,7 +86,7 @@ define('appContactsRouter',
         
         if (typeof this.view === 'object') this.view.remove(); 
         this.view = view();
-        this.view.render();
+        $('#content').html(this.view.render().el);
         
         /*
         this.view && (this.view.close ? this.view.close() : this.view.remove());

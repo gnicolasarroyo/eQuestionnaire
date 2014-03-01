@@ -13,30 +13,32 @@ define("contactListMasterView",
   	 * Contact List Master View
   	 */ 
   	var ContactListMasterView = Backbone.View.extend({
-  		el: '#content',
+  		id: 'master-view',
+      className: 'animate fadeIn',
   		initialize: function () {
   			/**
   			 * initialize
   			 */
-  			this.views = [];
+            this.views = [];
             this.collection.search({}, function (self) {
+                //window.appEvents.trigger('loader:show');
                 self.createView(SearchView);
                 self.createView(ListView);
                 self.render();
+                //window.appEvents.trigger('loader:hide');
+                self.listenTo(self.collection, "reset", self.render);
             }, this);
-  			
-            this.listenTo(this.collection, "change", this.render);
-            this.listenTo(this.collection, "add", this.render);
-            this.listenTo(this.collection, "remove", this.render);
-            this.listenTo(this.collection, "reset", this.render);
   		},
   		render: function () {
   			/**
   			 * render
   			 */
+             window.appEvents.trigger('loader:hide');
   			_.each(this.views, function (view) {
   				this.$el.append(view.render().el);
   			}, this);
+            window.appEvents.trigger('loader:hide');
+        return this;    
   		},
   		createView: function (view) {
   			/**
@@ -53,7 +55,8 @@ define("contactListMasterView",
   				view.remove();
   			});
   			//this.$el.remove();
-            this.$el.html('');
+            this.$el.remove();
+            this.stopListening();
 			return this;
   		}
   	});

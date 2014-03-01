@@ -10,6 +10,7 @@ define('userModel',
 	*/
 	var UserModel = Backbone.Model.extend({
 		urlRoot: '/api/v1/user/',
+		idAttribute: '_id',
 		defaults: {
 			username: ''
 		},

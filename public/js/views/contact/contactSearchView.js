@@ -23,10 +23,7 @@ define("contactSearchView",
             /**
              * initialize
              */
-            //this.listenTo(this.collection, "change", this.render, this);
-            //this.listenTo(this.collection, "add", this.render, this);
-            //this.listenTo(this.collection, "remove", this.render, this);
-            //this.listenTo(this.collection, "reset", this.render, this);
+            this.filter= '';
         },
   		render: function () {
   			/**
@@ -34,6 +31,7 @@ define("contactSearchView",
   			 */
   			this.$el.html(this.template({
                 count_records: this.collection.length,
+                legend: 'Lista de contactos',
                 no_records: 'Aún no has cargado ningún contacto, para añadir contactos a tu grupo dirigete al menu "Nuevo contacto" que se visualiza a la izquierda de esta pantalla.',
                 not_found_records: 'No se han encontrado resultados que coincidan con ',
                 found_records: 'Resultados para ',
@@ -50,9 +48,7 @@ define("contactSearchView",
              */
             if ($(e.currentTarget).val().length >= 3 && e.which == 13) {
                 this.filter = $(e.currentTarget).val();
-                this.collection.search({ name: this.filter, email: this.filter }, function (self) {
-                    self.render();
-                }, this);
+                this.collection.search({ name: this.filter, email: this.filter });
             }
         },
         undoSearch: function (e) {
@@ -63,9 +59,7 @@ define("contactSearchView",
             e.preventDefault();
 
             this.filter = '';
-            this.collection.search({}, function (self) {
-                self.render();
-            }, this);
+            this.collection.search({});
         }
   	});
 

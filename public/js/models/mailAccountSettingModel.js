@@ -11,6 +11,7 @@ define('mailAccountSettingModel',
 	*/
 	var MailAccountSettingModel = Backbone.Model.extend({
 		urlRoot: '/api/v1/mailaccountsetting/',
+		idAttribute: '_id',
 		defaults: {
 			name: '',
 			description: '',

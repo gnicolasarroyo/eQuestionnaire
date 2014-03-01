@@ -10,6 +10,7 @@ define('choiceModel',
 	*/
 	var ChoiceModel = Backbone.Model.extend({
 		urlRoot: '/api/v1/choice/',
+		idAttribute: '_id',
 		defaults: {
 			description: ''
 		},

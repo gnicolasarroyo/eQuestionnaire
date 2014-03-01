@@ -12,6 +12,7 @@ define('contactListModel',
 	*/
 	var ContactListModel = Backbone.Model.extend({
 		urlRoot: '/api/v1/contactlist/',
+		idAttribute: '_id',
 		defaults: {
 			name: '',
 			description: '',

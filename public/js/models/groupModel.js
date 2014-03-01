@@ -10,6 +10,7 @@ define('groupModel',
 	*/
 	var GroupModel = Backbone.Model.extend({
 		urlRoot: '/api/v1/group/',
+		idAttribute: '_id',
 		defaults: {
 			name: '',
 			description: ''

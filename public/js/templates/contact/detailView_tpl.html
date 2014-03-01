@@ -1,0 +1,24 @@
+<div class="animated fadeIn">
+	<h2><small><%= legend %></small></h2>
+	<hr>
+	<p>
+		<%= success_message %>
+	</p>
+	<p>
+		<strong><%= input_label_name %></strong>
+	</p>
+	<p>
+		<%= model.name %>
+	</p>
+	<p>
+		<strong><%= input_label_email %></strong>
+	</p>
+	<p>
+		<%= model.email %>		
+	</p>
+	<p>
+		<a class="btn btn-primary btn-small" href="<%= link_new %>"><%= link_label_new %></a>
+		&nbsp;
+		<a href="<%= link_edit %>"><%= link_label_editar %></a>
+	</p>
+</div>

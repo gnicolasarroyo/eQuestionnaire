@@ -12,6 +12,7 @@ define('questionModel',
 	*/
 	var QuestionModel = Backbone.Model.extend({
 		urlRoot: '/api/v1/question/',
+		idAttribute: '_id',
 		defaults: {
 			query: '',
 			question_type: 0,
