@@ -43,14 +43,14 @@ define("contactListView",
              * prevPage
              */
             e.preventDefault();
-            this.collection.prevPage();
+            if (this.collection.hasPrevPage) this.collection.prevPage();
         },
         nextPage: function (e) {
             /**
              * nextPage
              */
             e.preventDefault();
-            this.collection.nextPage();
+            if (this.collection.hasNextPage) this.collection.nextPage();
         }
   	});
 

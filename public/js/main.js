@@ -61,7 +61,10 @@ require.config({
         notifierView: 'views/notifierView',
         contactListMasterView: 'views/contact/contactListMasterView',
         contactListView: 'views/contact/contactListView',
-        contactSearchView: 'views/contact/contactSearchView'
+        contactSearchView: 'views/contact/contactSearchView',
+        contactNewView: 'views/contact/contactNewView',
+        contactEditView: 'views/contact/contactEditView',
+        contactDeleteView: 'views/contact/contactDeleteView'
     }
 });
 

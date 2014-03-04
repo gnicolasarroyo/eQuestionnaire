@@ -9,9 +9,9 @@
 	  		<input type="text" class="search-query" placeholder="<%= input_search_placeholer %>" id="input-search">
 	</div>
 	<% if (count_records === 0 && filter) { %>
-		<p><%= not_found_records %> <strong>"<%= filter %>"</strong>, <a id="btn-remove-filter"><%= btn_label_remove_filter %></a>.</p>
+		<p><%= not_found_records %> <strong>"<%= filter %>"</strong>, <a id="btn-remove-filter" style=" cursor: pointer"><%= btn_label_remove_filter %></a>.</p>
 	<% } %>
 	<% if (count_records > 0 && filter) { %>
-		<p><%= found_records %> <strong>"<%= filter %>"</strong>, <a id="btn-remove-filter"><%= btn_label_remove_filter %></a>.</p>
+		<p><%= found_records %> <strong>"<%= filter %>"</strong>, <a id="btn-remove-filter" style=" cursor: pointer"><%= btn_label_remove_filter %></a>.</p>
 	<% } %>	
 <% } %>

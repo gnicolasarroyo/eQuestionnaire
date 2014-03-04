@@ -2,33 +2,30 @@
  * Load Dependencies
  * =================
  */
-
-var express = require('express');
-var http = require('http');
-var path = require('path');
-var app = express();
-var RedisStore = require('connect-redis')(express);
-var mongoose = require('mongoose');
+var express = require('express'),
+	http = require('http'),
+	path = require('path'),
+	app = express(),
+	RedisStore = require('connect-redis')(express),
+	mongoose = require('mongoose');
 
 
 /**
  * Load Storage
  * ===============
  */
-
 mongoose.connect('mongodb://127.0.0.1/eQuestionnairePrueba');
 
 
 /**
  * Load Controllers
  * ===========
- */ 
-
-var appController = require('./controllers/app');
-var contactController = require('./controllers/contact');
-var contactListController = require('./controllers/contactlist');
-var mailAccountSettingController = require('./controllers/mailaccountsetting');
-var questionnaireController = require('./controllers/questionnaire');
+ */
+var appController = require('./controllers/app'),
+	contactController = require('./controllers/contact'),
+	contactListController = require('./controllers/contactlist'),
+	mailAccountSettingController = require('./controllers/mailaccountsetting'),
+	questionnaireController = require('./controllers/questionnaire');
 
 
 /**
@@ -69,8 +66,7 @@ if ('development' == app.get('env')) {
  * Routes
  * ======
  */
-
-// appplication -->
+// application -->
 app.get(    '/',                    appController.index);
 app.get(    '/account/signup/',     appController.getSignup);
 app.post(   '/account/signup/',     appController.postSignup);

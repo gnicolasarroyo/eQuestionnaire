@@ -24,6 +24,9 @@ define("contactEditView",
   			 */
         	this.createTemplate(EditViewTpl, 'edit');
         	this.createTemplate(DetailViewTpl, 'detail');
+        	this.getModel(function (self) {
+				self.render('edit');
+			}, this);
         },
   		render: function (mode) {
   			/**
@@ -31,21 +34,22 @@ define("contactEditView",
   			 * @param <String> mode
   			 */
   			switch(mode) {
-				case 'edit' || 'undefined':
-					this.getModel(function (self) {
-						self.$el.html(self.templates.edit({
-			                model: self.model.toJSON(),
-			                legend: 'Editar contacto',
-			                label_name: 'Nombre', 
-			                label_email: 'Correo electrónico',
-			                btn_label_save: 'Guardar cambios'
-			            }));
-					}, this);
-		        	break;    
+				case 'edit':
+					this.$el.html(this.templates.edit({
+		                model: this.model.toJSON(),
+		                legend: 'Editar contacto',
+		                input_label_name: 'Nombre', 
+		                input_label_email: 'Correo electrónico',
+		                btn_label_save: 'Guardar cambios'
+		            }));
+		        	break;
 		        case 'detail': 
 		        	this.$el.html(this.templates.detail({
 		                model: this.model.toJSON(),
 		                legend: 'Detalle de contacto',
+		                success_message: 'Todo correcto, se ha guardado correctamente la información del contacto.',
+		                label_name: 'Nombre',
+		                label_email: 'Correo electrónico',
 		                link_new: '#contacts/new/reload/',
 		                link_label_new: 'Crear nuevo',
 		                link_edit: '#contacts/:id/edit/reload/',
@@ -54,11 +58,6 @@ define("contactEditView",
 		        	break;
 		        default:
 					this.$el.html('');
-				  	window.appEvents.trigger('notifier:show', {
-						type: 'danger', 
-						title: 'Ha ocurrido un error',
-						message: 'No se pudo recuperar el formulario de contacto, si el problema continua comunicate con personal de atención al cliente'
-					});
 			}
 		    return this;
   		},
@@ -87,6 +86,7 @@ define("contactEditView",
   			 * @param <String> template
   			 * @param <String> name
   			 */
+  			if (typeof this.templates === 'undefined') this.templates = [];
   			this.templates[name] = _.template(template);
   		},
         save: function (e) {

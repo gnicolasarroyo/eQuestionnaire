@@ -73,7 +73,7 @@ exports.list = function(req, res){
 					if (err) res.send(404, {});
 		        	else res.send({
 		        		collection: contacts, 
-		        		page: (req.query.page && req.query.page > 0) ? req.query.page : 0, 
+		        		page: (req.query.page && req.query.page > 0) ? parseInt(req.query.page) : 0, 
 		        		pages: ((Math.floor(count / 5)) + ((count % 5) > 0 ? 1 : 0)) 
 		        	});
 		      	});

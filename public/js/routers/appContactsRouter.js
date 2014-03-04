@@ -5,16 +5,20 @@ define('appContactsRouter',
   'contactCollection',
   'contactListModel',
   'contactListCollection',
-  //'contactFormView',
-  'contactListMasterView'
+  'contactListMasterView',
+  'contactNewView',
+  'contactEditView',
+  'contactDeleteView'
   ], function (
     Backbone, 
     ContactModel, 
     ContactCollection, 
     ContactListModel, 
     ContactListCollection,
-    //ContactFormView,
-    ContactListMasterView) {
+    ContactListMasterView,
+    ContactNewView,
+    ContactEditView,
+    ContactDeleteView) {
 
 
     /**
@@ -46,24 +50,21 @@ define('appContactsRouter',
       },
       listContact: function() {
         this.loadView('contacts/', function () { return new ContactListMasterView({ collection: new ContactCollection() }); });
-        console.log('this a contact list');
       },
       newContact: function() {
-        //this.loadView('contacts/new/', function () {return new ContactFormView({ model: new ContactModel() }); });
-        console.log('new contact');
+        this.loadView('contacts/new/', function () {return new ContactNewView({ model: new ContactModel() }); });
       },
       newContactReload: function () {
         this.navigate("contacts/new/", {trigger: true, replace: true});
       },
       editContact: function(id) {
-        this.loadView('', function () {return new ContactFormView({ model: new ContactModel({ _id: id }) }); });
+        this.loadView('', function () {return new ContactEditView({ model: new ContactModel({ _id: id }) }); });
       },
       editContactReload: function(id) {
         this.navigate("contacts/"+id+"/edit/", {trigger: true, replace: true});
       },
       deleteContact: function(id) {
-        this.loadView('', {});        
-        console.log('this a contact delete ' + id);
+        this.loadView('', function () {return new ContactDeleteView({ model: new ContactModel({ _id: id }) }); });
       },
       listContactList: function() {
         this.loadView('contacts/lists/', function () { return new ContactListMasterView({ collection: new ContactCollection() }); });

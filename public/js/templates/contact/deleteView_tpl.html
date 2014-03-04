@@ -1,8 +1,8 @@
 <div class="animated fadeIn">
 	<h2><small><%= legend %></small></h2>
 	<hr>
-	<p>
-		<%= success_message %>
+	<p id="question-confirm-delete">
+		<%= question_confirm_delete %>
 	</p>
 	<p>
 		<strong><%= label_name %></strong>
@@ -17,8 +17,8 @@
 		<%= model.email %>		
 	</p>
 	<p>
-		<a class="btn btn-primary btn-small" href="<%= link_new %>"><%= link_label_new %></a>
+		<button type="button" class="btn btn-danger btn-small" id="btn-destroy"><%= btn_label_destroy %></button>
 		&nbsp;
-		<a href="<%= link_edit.replace(':id', model._id) %>"><%= link_label_edit %></a>
+		<a href="<%= link_back_to_list %>"><%= link_label_back_to_list %></a>
 	</p>
 </div>

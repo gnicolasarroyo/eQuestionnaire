@@ -24,19 +24,19 @@ define("contactNewView",
   			 */
         	this.createTemplate(NewViewTpl, 'new');
         	this.createTemplate(DetailViewTpl, 'detail');
+        	this.render('new');
         },
   		render: function (mode) {
   			/**
   			 * render
   			 */
   			switch(mode) {
-				case 'new' || 'undefined':
-					//
+				case 'new':
+				case undefined:
 		  			this.$el.html(this.templates.new({
-		                model: this.model.toJSON(),
 		                legend: 'Nuevo contacto',
-		                label_name: 'Nombre', 
-		                label_email: 'Correo electrónico',
+		                input_label_name: 'Nombre', 
+		                input_label_email: 'Correo electrónico',
 		                btn_label_save: 'Crear'
 		            }));
 		        	break;    
@@ -44,23 +44,22 @@ define("contactNewView",
 		        	this.$el.html(this.templates.detail({
 		                model: this.model.toJSON(),
 		                legend: 'Detalle de contacto',
+		                success_message: 'Todo correcto, se ha guardado correctamente la información del contacto.',
+		                label_name: 'Nombre',
+		                label_email: 'Correo electrónico',
 		                link_new: '#contacts/new/reload/',
-		                link_label_new: 'Otro nuevo'
+		                link_label_new: 'Otro nuevo',
 		                link_edit: '#contacts/:id/edit/reload/',
 		                link_label_edit: 'Editar'
 		            }));
 		        	break;
 		        default:
 					this.$el.html('');
-				  	window.appEvents.trigger('notifier:show', {
-						type: 'danger', 
-						title: 'Ha ocurrido un error',
-						message: 'No se pudo recuperar el formulario de contacto, si el problema continua comunicate con personal de atención al cliente'
-					});
 			}
 		    return this;
   		},
   		createTemplate: function (template, name) {
+  			if (typeof this.templates === 'undefined') this.templates = [];
   			this.templates[name] = _.template(template);
   		},
         save: function (e) {

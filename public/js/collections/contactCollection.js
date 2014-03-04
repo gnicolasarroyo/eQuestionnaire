@@ -82,7 +82,7 @@ define('contactCollection',
 			*/
 			var data = {
 				page: 0
-			};
+			}, self = this;
 
 			if (typeof filters === 'object') { 
 				this.filters = filters; 
@@ -98,7 +98,7 @@ define('contactCollection',
 					if (typeof callback === 'function') callback(context);
 				},
 				error: function () {
-					this.errorNotify('No se pudieron recuperar los contactos');
+					self.errorNotify('No se pudieron recuperar los contactos');
 				}
 			});
 		},
