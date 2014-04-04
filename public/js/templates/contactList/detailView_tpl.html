@@ -1,0 +1,18 @@
+<div class="animated fadeIn">
+	<h2><small><%= legend %></small></h2>
+	<hr>
+	<p>
+		<%= success_message %>
+	</p>
+	<p>
+		<strong><%= label_name %></strong>
+	</p>
+	<p>
+		<%= model.name %>
+	</p>
+	<p>
+		<a class="btn btn-primary btn-small" href="<%= link_new %>"><%= link_label_new %></a>
+		&nbsp;
+		<a href="<%= link_edit.replace(':id', model._id) %>"><%= link_label_edit %></a>
+	</p>
+</div>

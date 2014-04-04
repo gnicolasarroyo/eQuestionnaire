@@ -64,7 +64,10 @@ require.config({
         contactSearchView: 'views/contact/contactSearchView',
         contactNewView: 'views/contact/contactNewView',
         contactEditView: 'views/contact/contactEditView',
-        contactDeleteView: 'views/contact/contactDeleteView'
+        contactDeleteView: 'views/contact/contactDeleteView',
+        contactListNewView: 'views/contactList/contactListNewView',
+        // Applcation -->
+        application: 'application'
     }
 });
 
@@ -73,42 +76,7 @@ require.config({
 * Initialize Main App
 * ===================
 */
-require([
-    'backbone',
-    'underscore',
-    'appAccountRouter',
-    'appContactsRouter',
-    'appDashboardRouter',
-    'appGroupRouter',
-    'appQuestionnairesRouter',
-    'loaderView',
-    'notifierView',
-    'sidebarView'
-    ], function (
-        Backbone,
-        _, 
-        appAccountRouter,
-        appContactsRouter,
-        appDashboardRouter, 
-        appGroupRouter, 
-        appQuestionnairesRouter,
-        LoaderView,
-        NotifierView,
-        SidebarView
-        ) {
-    
-    // Initialize routing and start Backbone.history()
-    window.appEvents = _.extend({}, Backbone.Events);
-
-    new appAccountRouter();
-    new appContactsRouter();
-    new appDashboardRouter(); 
-    new appGroupRouter(); 
-    new appQuestionnairesRouter();
-
-    Backbone.history.start();
-
-    new LoaderView();
-    new NotifierView();
-    new SidebarView();
+require(['application'], function (app) {
+    // Initialize
+    window.equestionnaire = app.initialize();
 });

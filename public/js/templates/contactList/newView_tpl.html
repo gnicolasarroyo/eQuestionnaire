@@ -1,0 +1,94 @@
+<div class="animated fadeIn">
+	<h2><small><%= legend %></small></h2>
+	<hr>
+	<!-- Name field 
+    =================================-->
+    <div class="control-group" id="nameField">  
+        <label class="control-label" for="c-name"><%= input_label_name %></label>
+        <div class="controls">
+            <input maxlength="30" type="text" name="c-name" id="c-name">
+            <span class="help-inline"></span>
+        </div>  <!-- end controls -->
+    </div> <!-- end .control-group -->
+
+    <!-- Description field 
+    =================================-->
+    <div class="control-group" id="descriptionField">  
+        <label class="control-label" for="c-description"><%= input_label_description %></label>
+        <div class="controls">
+            <textarea maxlength="100" name="c-description" id="c-description"></textarea>
+            <span class="help-inline"></span>
+        </div>  <!-- end controls -->
+    </div> <!-- end .control-group -->
+    <!--<br>
+    <h5><%= label_collection %></h5>
+    <hr>-->
+    <div class="control-group" id="contactsField">
+        <h5><%= label_collection %></h5>
+        <hr>
+        <span class="help-inline" style="padding-left:0"></span>
+    </div>
+    <div class="row">
+        <!-- No selected field 
+        =================================-->
+        <div class="span4">
+            <p><strong><%= label_no_selected %></strong></p>
+            <div class="navbar navbar-masthead" style="margin-bottom:0">
+              <div class="navbar-inner">
+                <div class="navbar-search pull-left">
+                  <input type="text" class="search-query" placeholder="<%= input_no_selected_search_placeholder %>" id="input-no-selected-search">
+                  <button class="btn btn-small btn-success" type="button" id="btn-no-selected-add"><%= btn_label_add %></button>
+                </div>
+              </div>
+            </div>
+            <div class="scrollable" style="height: 200px; overflow-y: auto; border: 1px solid silver;">
+                <table class="table table-hover">
+                    <tbody id="table-no-selected">
+                        <% _.each(no_selected_collection, function (item) { %>
+                        <tr>
+                            <td><input type="checkbox" id="select-to-add" name="select-to-add" value="<%= item._id %>"></td>
+                            <td><%= item.name %>, <small><%= item.email %></small></td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+            <p><span id="no-selected-collection-length" class="badge"><%= no_selected_collection.length %></span> | <span id="count-no-selected" class="badge badge-success"><%= count_no_selected %></span></p>
+        </div>
+
+        <!-- Selected field 
+        =================================-->
+        <div class="span4">
+            <p><strong><%= label_selected %></strong></p>
+            <div class="navbar navbar-masthead" style="margin-bottom:0">
+              <div class="navbar-inner">
+                <form class="navbar-search pull-left">
+                  <input type="text" class="search-query" placeholder="<%= input_selected_search_placeholder %>" id="input-selected-search">
+                  <button class="btn btn-small btn-danger" type="button" id="btn-selected-remove"><%= btn_label_remove %></button>
+                </form>
+              </div>
+            </div>
+            <div class="scrollable" style="height: 200px; overflow-y: auto; border: 1px solid silver;">
+                <table class="table table-hover">
+                    <tbody id="table-selected">
+                        <% _.each(selected_collection, function (item) { %>
+                            <tr>
+                                <td><input type="checkbox" id="select-to-remove" name="select-to-remove" value="<%= item._id %>"></td>
+                                <td><%= item.name %>, <small><%= item.email %></small></td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+            <p><span id="selected-collection-length" class="badge"><%= selected_collection.length %></span> | <span id="count-selected" class="badge badge-important"><%= count_selected %></span></p>
+        </div>
+    </div>
+    <hr>
+	<!-- Actions form
+	=======================================-->
+	<div class="control-group">
+	    <div class="controls">
+	        <button class="btn btn-small btn-primary" type="button" id="btn-save"><%= btn_label_save %></button>
+	    </div> <!-- end .controls -->
+	</div> <!-- end .control-group -->
+</div>

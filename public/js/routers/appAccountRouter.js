@@ -1,7 +1,7 @@
 define('appAccountRouter', 
   [
-  'backbone'
-  ], function (Backbone) {
+  'backbone',
+  ], function (Backbone, Events) {
 
 
     /**

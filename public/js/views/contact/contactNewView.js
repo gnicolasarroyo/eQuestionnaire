@@ -5,8 +5,9 @@ define("contactNewView",
 	"backbone",
     "text!templates/contact/newView_tpl.html",
     "text!templates/contact/detailView_tpl.html",
+    "contactModel"
 	],  
-    function($, _, Backbone, NewViewTpl, DetailViewTpl){  
+    function($, _, Backbone, NewViewTpl, DetailViewTpl, ContactModel) {  
   
  	
  	/**
@@ -15,6 +16,7 @@ define("contactNewView",
   	var ContactNewView = Backbone.View.extend({
   		tagName: 'div',
         id: 'new-view',
+        model: new ContactModel(),
         events: {
             'click #btn-save': 'save',
         },

@@ -16,6 +16,9 @@ define('contactCollection',
 		initialize: function () {
 			console.log('contactCollection module loaded.');
 		},
+		comparator : function( model ) {
+		  	return model.get( 'name' );
+		},
 		parse: function (response, options) {
 			/**
 			 * parse

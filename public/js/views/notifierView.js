@@ -14,8 +14,6 @@ define('notifierView',
 		el: '#notifier',
 		template: _.template(NotifierTpl),
 		initialize: function () {
-			window.appEvents.on('notifier:show', this.show, this);
-
 			console.log('notifierView module loaded.');
 		},
 		show: function(data) {

@@ -15,8 +15,6 @@ define('sidebarView',
 		el: '#sidebar',
 		template: _.template(SidebarTpl),
 		initialize: function () {
-			window.appEvents.on('sidebar:render', this.render, this);
-
 			console.log('sidebarView module loaded.');
 		},
 		render: function (data) {
