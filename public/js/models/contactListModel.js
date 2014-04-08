@@ -15,7 +15,6 @@ define('contactListModel',
 		idAttribute: '_id',
 		defaults: {
 			name: '',
-			description: '',
 			contacts: []
 		},
 		initialize: function () {
@@ -28,9 +27,6 @@ define('contactListModel',
 
 			if (!attrs.name || attrs.name == '') {
 				errors.push({name: 'name', message: 'Debe ingresar un nombre.'});
-			}
-			if (!attrs.description || attrs.description == '') {
-				errors.push({name: 'description', message: 'Debe ingresar una descripción.'});
 			}
 			if (!attrs.contacts || !attrs.contacts.length > 0) {
 				errors.push({name: 'contacts', message: 'Debe seleccionar al menos un contacto.'});

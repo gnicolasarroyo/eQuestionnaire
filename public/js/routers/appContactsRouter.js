@@ -5,14 +5,18 @@ define('appContactsRouter',
   'contactNewView',
   'contactEditView',
   'contactDeleteView',
-  'contactListNewView'
+  'contactListNewView',
+  'contactListEditView',
+  'contactListListMasterView'
   ], function (
     Backbone,
     ContactListMasterView,
     ContactNewView,
     ContactEditView,
     ContactDeleteView,
-    ContactListNewView) {
+    ContactListNewView, 
+    ContactListEditView,
+    ContactListListMasterView) {
 
 
     /**
@@ -103,7 +107,7 @@ define('appContactsRouter',
              */
             this.loadView({
                 active: 'contacts/lists/',
-                view: ContactListMasterView,
+                view: ContactListListMasterView,
                 options: undefined
             });
         },
@@ -129,7 +133,7 @@ define('appContactsRouter',
              */
             this.loadView({
                 active: '',
-                view: ContactListMasterView,
+                view: ContactListEditView,
                 options: { _id: id }
             });
         },

@@ -16,7 +16,7 @@ define("contactEditView",
   	var ContactEditView = Backbone.View.extend({
   		tagName: 'div',
         id: 'edit-view',
-        model: new ContactModel(),
+        model: {},
         events: {
             'click #btn-save': 'save',
         },
@@ -26,6 +26,7 @@ define("contactEditView",
   			 */
         	this.createTemplate(EditViewTpl, 'edit');
         	this.createTemplate(DetailViewTpl, 'detail');
+        	this.model = new ContactModel();
 
 			this.model.set({ _id: options._id });
 			this.getModel(function (self) {

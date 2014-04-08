@@ -1,24 +1,24 @@
-define("contactListNewView", 
+define("contactListEditView", 
 	[
 	"jquery", 
 	"underscore", 
 	"backbone",
-	"text!templates/contactList/newView_tpl.html",
+	"text!templates/contactList/editView_tpl.html",
 	"text!templates/contactList/detailView_tpl.html",
 	"contactListModel",
 	"contactCollection"
 	],  
-	function($, _, Backbone, NewViewTpl, DetailViewTpl, ContactListModel, ContactCollection) {  
+	function($, _, Backbone, EditViewTpl, DetailViewTpl, ContactListModel, ContactCollection) {  
   
 	
 	/**
-	 * Contact List New View
+	 * Contact List Edit View
 	 */ 
 
 	// TODO: refactor code
-	var ContactListNewView = Backbone.View.extend({
+	var ContactListEditView = Backbone.View.extend({
 		tagName: 'div',
-		id: 'new-view',
+		id: 'edit-view',
 		model: {},
 		no_selected_collection: [],
 		selected_collection: [],
@@ -35,34 +35,35 @@ define("contactListNewView",
 			'keypress #input-selected-search'    : 'searchInSelected',
 			'click #btn-save'                    : 'save',
 		},
-		initialize: function () {
+		initialize: function (options) {
 			/**
 			 * initialize
 			 */
 			 // TODO: refactor code
-			this.createTemplate(NewViewTpl, 'new');
+			this.createTemplate(EditViewTpl, 'edit');
 			this.createTemplate(DetailViewTpl, 'detail');
 
 			this.model = new ContactListModel();
+			this.model.set({ _id: options._id });
+
 			this.no_selected_collection = new ContactCollection();
-			this.selected_collection = new ContactCollection();
-			
-			var that = this;
-			this.no_selected_collection.fetch({
-				success: function () {
-					that.render('new');
-				}
-			});
+				
+			this.getModel(function (self) {
+				self.selected_collection = new ContactCollection(self.model.get('contacts'));
+				self.no_selected_collection.remove(self.selected_collection.models);
+				self.render('edit');
+			}, this);
 		},
 		render: function (mode) {
 			/**
 			 * render
 			 */
 			switch(mode) {
-				case 'new':
+				case 'edit':
 				case undefined:
-					this.$el.html(this.templates.new({
-						legend: 'Nueva lista de contactos',
+					this.$el.html(this.templates.edit({
+						model: this.model.toJSON(),
+						legend: 'Editar lista de contactos',
 						input_label_name: 'Nombre', 
 						input_label_description: 'Descripción',
 						label_collection: 'Contactos',
@@ -100,6 +101,37 @@ define("contactListNewView",
 		createTemplate: function (template, name) {
 			if (typeof this.templates === 'undefined') this.templates = [];
 			this.templates[name] = _.template(template);
+		},
+		getModel: function (callback, self) {
+			/**
+  			 * getModel
+  			 * @param <Function> callback
+  			 * @param <Object> self
+  			 */
+
+        	this.model.fetch({
+    			success: function () {
+    				self.no_selected_collection.fetch({
+    					success: function () {
+    						callback(self);
+    					},
+    					error: function () {
+    						window.appEvents.trigger('notifier:show', {
+		 						type: 'danger', 
+		 						title: 'Ha ocurrido un error',
+		 						message: 'No se pudo recuperar la información de la lista de contactos, si el problema continua comunicate con personal de atención al cliente'
+		 					});
+    					}
+    				});
+    			},
+    			error: function () {
+    				window.appEvents.trigger('notifier:show', {
+ 						type: 'danger', 
+ 						title: 'Ha ocurrido un error',
+ 						message: 'No se pudo recuperar la información de la lista de contactos, si el problema continua comunicate con personal de atención al cliente'
+ 					});
+    			}
+    		});
 		},
 		selectToAdd: function (e) {
 			// TODO: refactor code
@@ -276,8 +308,8 @@ define("contactListNewView",
 	});
 
 	/**
-	 * @return Contact List New View
+	 * @return Contact List Edit View
 	 */ 
-	return ContactListNewView;
+	return ContactListEditView;
 
 });

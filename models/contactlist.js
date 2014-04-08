@@ -11,7 +11,6 @@ var mongoose = require('mongoose');
 */
 var schema = new mongoose.Schema({
 	name: { type: String, required: true },
-	description: { type: String, required: true },
 	group: { type: mongoose.Schema.Types.ObjectId, ref: 'Group' },
 	contacts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Contact' }]
 });

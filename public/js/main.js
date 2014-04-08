@@ -66,6 +66,10 @@ require.config({
         contactEditView: 'views/contact/contactEditView',
         contactDeleteView: 'views/contact/contactDeleteView',
         contactListNewView: 'views/contactList/contactListNewView',
+        contactListEditView: 'views/contactList/contactListEditView',
+        contactListListMasterView: 'views/contactList/contactListListMasterView',
+        contactListSearchView: 'views/contactList/contactListSearchView',
+        contactListListView: 'views/contactList/contactListListView',
         // Applcation -->
         application: 'application'
     }
